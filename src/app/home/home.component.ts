@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ShowService } from '../services/show.service';
+import { Show } from '../models/show';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'RealMovieapp';
-  constructor() { }
+  shows:Show[]=[];
+
+  constructor(private service:ShowService) { }
 
   ngOnInit(): void {
+
+    this.service.get().then(data=>{
+      this.shows = data;
+      console.log(data[0]);
+    });
+
   }
 
 }

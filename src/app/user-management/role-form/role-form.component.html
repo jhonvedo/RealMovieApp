@@ -1,7 +1,9 @@
 <form class="example-form">
     <mat-form-field class="example-full-width" >
       <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" [(ngModel)]="model.name" [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Name" name="name" [(ngModel)]="model.name">
     </mat-form-field> 
-    <button mat-raised-button color="primary" type="button" (click)="onSave()">Save</button>
+    <br>
+    <button mat-raised-button color="primary" type="button" (click)="onSave()" *ngIf="isNew">Save</button>
+    <button mat-raised-button color="primary" type="button" (click)="onUpdate()" *ngIf="!isNew">Update</button>
   </form>

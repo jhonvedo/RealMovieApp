@@ -13,9 +13,15 @@ export class IdentityRoleService {
   constructor(private http: HttpClient) { }
 
   get() {
-    return this.http.get<IdentityRole>(`${environment.baseUrl}${this.path}`);
+    return this.http.get<IdentityRole[]>(`${environment.baseUrl}${this.path}`);
   }
   post(data:IdentityRole) {
     return this.http.post(`${environment.baseUrl}${this.path}`,data);
+  }
+  put(data:IdentityRole) {
+    return this.http.put(`${environment.baseUrl}${this.path}`,data);
+  }
+  delete(data:IdentityRole) {
+    return this.http.delete(`${environment.baseUrl}${this.path}/${data.id}`);
   }
 }

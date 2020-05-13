@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IdentityRoleService } from 'src/app/services/identity-role.service';
+import { IdentityRole } from 'src/app/models/identity-role';
 
 @Component({
   selector: 'app-role-list',
@@ -8,11 +9,15 @@ import { IdentityRoleService } from 'src/app/services/identity-role.service';
 })
 export class RoleListComponent implements OnInit {
 
+  roles:IdentityRole[]=[];
   constructor(private service:IdentityRoleService ) { }
+
+  displayedColumns: string[] = ['name','actions'];
 
   ngOnInit(): void {
     this.service.get().subscribe(
       (data)=>{
+        this.roles = data;
         console.log(data)
       },
       err=>{}
