@@ -1,0 +1,7 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width" >
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" [(ngModel)]="model.name" [ngModelOptions]="{standalone: true}">
+    </mat-form-field> 
+    <button mat-raised-button color="primary" type="button" (click)="onSave()">Save</button>
+  </form>
