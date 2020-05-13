@@ -43,6 +43,52 @@ export interface Links {
     previousepisode: Previousepisode;
 }
 
+export interface Episode {
+    id: number;
+    url: string;
+    name: string;
+    season: number;
+    number: number;
+    airdate: string;
+    airtime: string;
+    airstamp: Date;
+    runtime: number;
+    image: Image;
+    summary: string;
+    _links: Links;
+}
+
+export interface Person {
+    id: number;
+    url: string;
+    name: string;   
+    birthday: string;
+    deathday?: any;
+    gender: string;
+    image: Image;
+    _links: Links;
+}
+
+export interface Character {
+    id: number;
+    url: string;
+    name: string;
+    image: Image;
+    _links: Links;
+}
+
+export interface Cast {
+    person: Person;
+    character: Character;
+    self: boolean;
+    voice: boolean;
+}
+
+export interface Embedded {
+    episodes: Episode[];
+    cast: Cast[];
+}
+
 export interface Show {
     id: number;
     url: string;
@@ -63,5 +109,6 @@ export interface Show {
     image: Image;
     summary: string;
     updated: number;
-    _links: Links;
+    links: Links;
+    embedded: Embedded;
 }

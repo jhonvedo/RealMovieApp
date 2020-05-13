@@ -1,6 +1,9 @@
-<mat-grid-list cols="4" [style.background]="'skyblue'">
-  <mat-grid-tile>Tile 1 </mat-grid-tile>
-  <mat-grid-tile>Tile 2 </mat-grid-tile>
-  <mat-grid-tile>Tile 3 </mat-grid-tile>
-  <mat-grid-tile>Tile 4 </mat-grid-tile>
-  </mat-grid-list>
+<mat-grid-list cols="4" rowHeight="170px" gutterSize="5px">
+  <mat-grid-tile *ngFor="let show of shows">
+    <img src="{{show.image.medium}}">
+    <mat-grid-tile-footer>
+      <h3>{{show.name}}</h3>
+    </mat-grid-tile-footer>
+  </mat-grid-tile>
+
+</mat-grid-list>
