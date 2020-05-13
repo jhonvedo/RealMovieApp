@@ -1,20 +1,11 @@
+<ng-template #wrapper *ngIf="isSingin; else noWrapper">
+  <app-wrapper-page></app-wrapper-page> 
+</ng-template>
 
 
+<ng-template #noWrapper >
+  <router-outlet></router-outlet>
+</ng-template>
 
-  
 
-  
-  <mat-card>
-    <mat-card-header>
- 
-    </mat-card-header>
-
-    <mat-card-content>
-  
-      <router-outlet></router-outlet>
-    </mat-card-content>
-  
-  </mat-card>
-
-  
 

@@ -47,6 +47,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ShowDetailComponent } from './show-detail/show-detail.component';
+import { WrapperPageComponent } from './wrapper-page/wrapper-page.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { ShowDetailComponent } from './show-detail/show-detail.component';
     RoleListComponent,
     UserFormComponent,
     UserListComponent,
-    ShowDetailComponent
+    ShowDetailComponent,
+    WrapperPageComponent
     
   ],
   imports: [
@@ -99,7 +102,8 @@ import { ShowDetailComponent } from './show-detail/show-detail.component';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    LayoutModule
   ],
  
   providers: [],

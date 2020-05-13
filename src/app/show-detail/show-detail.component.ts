@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Show, Cast, Episode } from '../models/show';
 import { ShowService } from '../services/show.service';
@@ -16,16 +16,15 @@ export class ShowDetailComponent implements OnInit {
   casts: Cast[] = [];
   seasons: any[] = [];
   episodes:any[]=[];
-  id: number;
+  id: string;
   isLoadingResults: boolean = true;
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.id = params['id'];
-      this.getShow();
-    });
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getShow();
+    
   }
   getShow() {
-    this.service.getOne(this.id).then(
+    this.service.getOne(this.id).subscribe(
       (data) => {
         this.movie = data;
         this.isLoadingResults = false;
@@ -37,7 +36,7 @@ export class ShowDetailComponent implements OnInit {
   }
 
   back() {
-    console.log(this.episodes);
+ 
 
   }
 

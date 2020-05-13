@@ -72,7 +72,7 @@
 
       <mat-tab label="Seasons">
         <section class="movie--cast" *ngIf="seasons.length > 0; else noSeasons">
-            <div>
+            <div class="seasons">
                 <mat-form-field>
                     <mat-label>Season</mat-label>
                     <mat-select [(ngModel)]="episodes">
@@ -82,32 +82,27 @@
                     </mat-select>
                   </mat-form-field>
 
-                  <!-- <mat-list>
-                    <mat-list-item *ngFor="let episode of episodes">
-                      <img src="{{episode.image.medium}}" alt="...">
-                      <h3 matLine> from </h3>
-                      <p matLine>
-                        <span>subject</span>
-                        <span class="demo-2"> -- content</span>
-                      </p>
-                    </mat-list-item>
-                  </mat-list> -->
+               
+                  <mat-grid-list cols="4" >
+                    <mat-grid-tile *ngFor="let episode of episodes">
+                      <mat-card >
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>{{episode.number}} - {{episode.name}}</mat-card-title>                    
+                        </mat-card-header>                  
+                        <mat-card-content>
+                          <img mat-card-lg-image src="{{episode.image.medium}}"/>
+                          <div [innerHTML]="episode.summary">
+    
+                          </div>
+                        </mat-card-content>                    
+                      </mat-card>
+                    </mat-grid-tile>
+                  
+                  </mat-grid-list>
+                  
 
-                  <mat-card *ngFor="let episode of episodes">
-                    <mat-card-header>
-                      <div mat-card-avatar class="example-header-image"></div>
-                      <mat-card-title>{{episode.name}}}</mat-card-title>                    
-                    </mat-card-header>
-                    <picture>
-                      <source media='(min-width:0px)' srcset="{{episode.image.medium}}">
-                      <img mat-card-image src="" alt="Photo of a Shiba Inu">
-                    </picture>
-                    <mat-card-content>
-                      <div [innerHTML]="episode.summary">
-
-                      </div>
-                    </mat-card-content>                    
-                  </mat-card>
+                  
                
             </div>
         </section>
