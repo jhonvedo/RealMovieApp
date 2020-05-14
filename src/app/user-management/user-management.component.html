@@ -1,7 +1,17 @@
 
+ <button mat-raised-button color="primary" type="button" (click)="newRole()">New Role</button>
+ <button mat-raised-button color="primary" type="button" (click)="newUser()">New User</button>
 
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+        <app-role-list (onEdit)="onRoleEdit($event)" ></app-role-list>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <app-user-list></app-user-list>
+    </mat-grid-tile>    
+  </mat-grid-list>
 
-<mat-card><app-role-form></app-role-form></mat-card>
+<!-- <mat-card><app-role-form></app-role-form></mat-card>
 <mat-card><app-role-list></app-role-list></mat-card>
 <mat-card><app-user-form></app-user-form></mat-card>
-<mat-card><app-user-list></app-user-list></mat-card>
+<mat-card><app-user-list></app-user-list></mat-card> -->

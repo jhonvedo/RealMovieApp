@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IdentityRoleService } from 'src/app/services/identity-role.service';
 import { IdentityRole } from 'src/app/models/identity-role';
 
@@ -8,7 +8,7 @@ import { IdentityRole } from 'src/app/models/identity-role';
   styleUrls: ['./role-list.component.scss']
 })
 export class RoleListComponent implements OnInit {
-
+  @Output() onEdit = new EventEmitter<IdentityRole>();
   roles:IdentityRole[]=[];
   constructor(private service:IdentityRoleService ) { }
 
@@ -22,6 +22,10 @@ export class RoleListComponent implements OnInit {
       },
       err=>{}
     )
+  }
+
+  edit(item:IdentityRole){
+    this.onEdit.emit(item);
   }
 
 }
