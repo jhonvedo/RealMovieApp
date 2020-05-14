@@ -14,19 +14,14 @@ export class IdentityUserService {
   get() {
     return this.http.get<IdentityUser[]>(`${environment.baseUrl}${this.path}`);
   }
-  post(data:IdentityUser,password:string) {
+  post(data:IdentityUser) {
 
-    var options = {
-      headers: new HttpHeaders({
-        'password':  password        
-      })
-    };
-    return this.http.post(`${environment.baseUrl}${this.path}`,data,options);
+    return this.http.post(`${environment.baseUrl}${this.path}`,data);
   }
   put(data:IdentityUser) {
     return this.http.put(`${environment.baseUrl}${this.path}`,data);
   }
   delete(data:IdentityUser) {
-    return this.http.delete(`${environment.baseUrl}${this.path}/${data.id}`);
+    return this.http.delete(`${environment.baseUrl}${this.path}`);
   }
 }

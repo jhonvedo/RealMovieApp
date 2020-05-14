@@ -2,8 +2,8 @@ export class IdentityUser {
     firstName: string;
     lastName: string;
     id: string;
-    userName: string;   
-    email: string;   
-    isUser:boolean;
+    userName: string;  
+    password:string; 
+    email: string;     
     isAdmin:boolean;
 }

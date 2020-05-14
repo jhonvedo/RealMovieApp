@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,11 +44,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+
 import { ShowDetailComponent } from './show-detail/show-detail.component';
 import { WrapperPageComponent } from './wrapper-page/wrapper-page.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ShowListComponent } from './component/show-list/show-list.component';
 import { LazyLoadImageModule,intersectionObserverPreset  } from 'ng-lazyload-image';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {ToastrModule} from 'ngx-toastr';
+import { CustomInterceptor } from './services/custom-interceptor';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,8 @@ import { LazyLoadImageModule,intersectionObserverPreset  } from 'ng-lazyload-ima
     LazyLoadImageModule.forRoot({
       preset: intersectionObserverPreset // <-- tell LazyLoadImage that you want to use IntersectionObserver
     }),
+    NgxMaterialTimepickerModule,
+    ToastrModule.forRoot() ,
 
 
     MatCheckboxModule,
@@ -109,7 +115,11 @@ import { LazyLoadImageModule,intersectionObserverPreset  } from 'ng-lazyload-ima
     LayoutModule
   ],
  
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: CustomInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

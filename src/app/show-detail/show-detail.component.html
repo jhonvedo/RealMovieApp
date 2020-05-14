@@ -70,8 +70,22 @@
                     </mat-select>
                   </mat-form-field>
 
+
+                  <div class="episodes-container">
+                    <div  tabindex="0" class="episode-card" *ngFor="let episode of episodes">
+                      <div  class="e-card e-card-horizontal" style="width:400px">
+                          <img src="{{episode.image.medium}}" alt="Sample" style="height: 180px">
+                          <div class="e-card-stacked"> 
+                                <b>{{episode.number}} {{episode.name}}</b>
+                                <div [innerHTML]="episode.summary">    
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                
                
-                  <mat-grid-list cols="4" rowHeight="270px">
+                  <!-- <mat-grid-list cols="4" rowHeight="270px">
                     <mat-grid-tile *ngFor="let episode of episodes">
                       <mat-card >
                         <mat-card-header>
@@ -80,15 +94,14 @@
                         </mat-card-header>   
                         <img mat-card-image src="{{episode.image.medium}}"/>               
                         <mat-card-content>                         
-                          <div [innerHTML]="episode.summary">
-    
+                          <div [innerHTML]="episode.summary">    
                           </div>
                         </mat-card-content>                    
                       </mat-card>
                     </mat-grid-tile>
                   
                   </mat-grid-list>
-                  
+                   -->
 
                   
                

@@ -1,14 +1,95 @@
-<!-- <mat-grid-list cols="4" rowHeight="170px" gutterSize="5px">
-  <mat-grid-tile *ngFor="let show of shows">
-    <img src="{{show.image.medium}}">
-    <mat-grid-tile-footer>
-      <h3><a [routerLink]="['/detail', { id: show.id }]">{{show.name}}</a></h3>
-    </mat-grid-tile-footer>
-  </mat-grid-tile>
 
-</mat-grid-list> -->
 <div id="hub-shows">
-  <app-show-list 
-  [shows]="shows"
-  ></app-show-list>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Search
+        </mat-panel-title>       
+      </mat-expansion-panel-header>  
+
+   
+        <mat-form-field class="example-full-width">
+          <input type="text" 
+          [(ngModel)]="filterOption.keywords"
+                 placeholder="Keywords"            
+                 matInput              
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let name of names" [value]="name">
+              {{name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        
+        <br>
+
+        <mat-form-field>
+        <mat-label>Genre</mat-label>
+        <mat-select [(ngModel)]="filterOption.genre">
+          <mat-option [value]="'*'" >
+            All
+          </mat-option>
+          <mat-option *ngFor="let genre of genres" [value]="genre" >
+            {{genre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Language</mat-label>
+        <mat-select [(ngModel)]="filterOption.language">
+          <mat-option [value]="'*'" >
+            All
+          </mat-option>
+          <mat-option *ngFor="let language of languages" [value]="language" >
+            {{language}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Channel</mat-label>
+        <mat-select [(ngModel)]="filterOption.channel">
+          <mat-option [value]="'*'" >
+            All
+          </mat-option>
+          <mat-option *ngFor="let channel of channels" [value]="channel" >
+            {{channel}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>  
+
+    
+      <mat-form-field>
+        <mat-label>Schedule Day</mat-label>
+        <mat-select [(ngModel)]="filterOption.day">
+          <mat-option [value]="'*'" >
+            All
+          </mat-option>
+          <mat-option *ngFor="let day of days" [value]="day" >
+            {{day}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>  
+
+        <mat-form-field>
+          <input matInput placeholder="Schedule Hours" [(ngModel)]="filterOption.hour" aria-label="24hr format" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+        </mat-form-field>  
+        <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+ 
+     
+        <!-- <mat-label>Schedule Hours</mat-label>
+        <input placeholder="Schedule Hours" [(ngModel)]="filterOption.hour" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+        <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+      -->
+
+
+
+      <button mat-raised-button color="primary" type="button" (click)="onSearch()">Search</button>
+    
+    </mat-expansion-panel>   
+  </mat-accordion>
+  <br>
+  <app-show-list   [shows]="shows"  ></app-show-list>
 </div>

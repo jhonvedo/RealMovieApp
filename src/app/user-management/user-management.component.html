@@ -1,8 +1,15 @@
 
- <div class="content">
-    <h2>Users</h2>  <button mat-raised-button color="primary" type="button" (click)="newUser()">New User</button>
 
-    <app-user-list (onEdit)="onEditUser($event)"></app-user-list>
- </div>
+<div class="content">
+   <mat-card>
+      <mat-card-title>Users</mat-card-title>
+      <mat-card-actions>
+         <button mat-raised-button color="primary" type="button" (click)="newUser()">New User</button>
+      </mat-card-actions>
+      <mat-card-content> 
+         <app-user-list [users]="users" (onEdit)="onEditUser($event)" (onDelete)="onDeleteUser($event)"></app-user-list>
+      </mat-card-content>
+   </mat-card>
+</div>
 
 

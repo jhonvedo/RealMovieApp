@@ -1,14 +1,27 @@
 <mat-sidenav-container class="sidenav-container">
  
   <mat-sidenav-content>
-    <mat-toolbar color="primary">     
-     
+    <mat-toolbar color="primary"> 
       <span>RealMovieapp</span>
 
+      <mat-menu #appMenu="matMenu" >
+        <button mat-menu-item [routerLink]="['/users']">User Management</button>       
+      </mat-menu>
+      <button mat-icon-button>
+        <mat-icon [routerLink]="['/home']">home</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="appMenu" *ngIf="user && user.isAdmin">
+        <mat-icon>lock_open</mat-icon>
+      </button>
+       <!-- This fills the remaining space of the current row -->
+      <span class="example-fill-remaining-space"></span>
+      
+      <span *ngIf="user">Hi! {{user.userName}} |</span>
+      <span (click)="onSignout()">SignOut</span>
+     
     </mat-toolbar>
     <div class="content">
       <router-outlet></router-outlet>
-
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

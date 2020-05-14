@@ -37,16 +37,16 @@ export class AuthClientService {
     });
   }
 
-  sessionExists():boolean {
+  sessionExists():{exist:boolean,data:IdentityUser} {
     var data = localStorage.getItem(this.itemKey);
     if(data==undefined){
-      return false;
+      return {exist:false,data:undefined};
     }
     var model:IdentityUser = JSON.parse(window.atob(data));
     if(model.email==undefined || model.id == undefined){
-      return false;
+      return {exist:false,data:undefined};
     }
-    return true;
+    return {exist:true,data:model};
   }
 
   signOut() {
