@@ -12,8 +12,8 @@ export class ShowService {
   path:string = "show";
   constructor(private http: HttpClient) { }
 
-  cache:Show[]=[];
-  lastUpdate:Date= new Date();
+ 
+
   httpOptions = {
     headers: new HttpHeaders({
       'Accept': 'application/json',
@@ -22,21 +22,8 @@ export class ShowService {
   };
 
   get() {
-    return new Promise<Show[]>((resolve, reject) => {
-      if(this.cache.length > 0){
-        resolve(this.cache);     
-      }else{
-        this.http.get<Show[]>(`${environment.baseUrl}${this.path}`,this.httpOptions).subscribe(
-          (data)=>{
-            this.cache = data;
-            resolve(this.cache);     
-          },
-          (error)=>{
-            reject(error);
-          }
-        );
-      }
-    });    
+    return this.http.get<Show[]>(`${environment.baseUrl}${this.path}`,this.httpOptions);
+     
   }
 
   getOne(id:string) {

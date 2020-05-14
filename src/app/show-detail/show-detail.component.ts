@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Show, Cast, Episode } from '../models/show';
 import { ShowService } from '../services/show.service';
 import { _getShadowRoot } from '@angular/cdk/platform';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-show-detail',
@@ -11,7 +12,7 @@ import { _getShadowRoot } from '@angular/cdk/platform';
 })
 export class ShowDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private service: ShowService) { }
+  constructor(private route: ActivatedRoute, private service: ShowService,private notificationService: ToastrService) { }
   movie: Show;
   casts: Cast[] = [];
   seasons: any[] = [];
@@ -31,6 +32,8 @@ export class ShowDetailComponent implements OnInit {
         this.casts = data.embedded?.cast;
         this.seasons = this.transform(data.embedded?.episodes,"season");
         console.log(this.seasons);
+      },error=>{
+        this.notificationService.error("Error when consulting show");
       }
     );
   }

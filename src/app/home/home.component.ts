@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ShowService } from '../services/show.service';
 import { Show } from '../models/show';
 import { FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -27,14 +28,16 @@ export class HomeComponent implements OnInit {
     hour:string
   } = { channel: '*', genre: '*', language: '*', keywords: '', day: '*' ,hour:''};
 
-  constructor(private service: ShowService) { }
+  constructor(private service: ShowService,private notificationService: ToastrService) { }
 
   ngOnInit(): void {
 
-    this.service.get().then(data => {
+    this.service.get().subscribe(data=>{
       this.shows = [...data];
       this.allShows = [...data];
       this.fillClassificationLists();
+    },error=>{
+      this.notificationService.error("Error to load shows");
     });
 
   }
