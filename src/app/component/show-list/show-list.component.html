@@ -2,7 +2,7 @@
   <span>{{shows.length}} shows found</span>
   <mat-grid-list cols="4" gutterSize="5px" rowHeight="370px" >
     <mat-grid-tile *ngFor="let show of shows">
-      <mat-card >      
+      <mat-card >             
            <a [routerLink]="['/detail', show.id]">           
                   <img  mat-card-image
                   *ngIf="show.image.medium" 
@@ -15,7 +15,10 @@
                   alt="No poster available"> 
                 </a>             
           <mat-card-content>
-              {{show.name}}           
+            <p>
+              <span *ngIf="show.rating && show.rating.average" matBadge="{{show.rating.average}}" matBadgeOverlap="false">{{show.name}}         </span>
+            </p>
+                
           </mat-card-content>      
        </mat-card>
     </mat-grid-tile>

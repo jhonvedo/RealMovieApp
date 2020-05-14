@@ -48,9 +48,9 @@ export class HomeComponent implements OnInit {
       }
       if (element.language) {
         this.languages.push(element.language);
-      }
-      if (element.webChannel) {
-        this.channels.push(element.webChannel);
+      }     
+      if(element.webChannel && element.webChannel.name){
+        this.channels.push(element.webChannel.name);
       }
       this.names.push(element.name);
     });
@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit {
       if (
         this.filterOption.keywords != '' && element.name.toLowerCase().indexOf(this.filterOption.keywords) == -1 ||
         this.filterOption.language != '*' && element.language.indexOf(this.filterOption.language) == -1 ||
+        this.filterOption.channel != '*' && element.webChannel?.name != this.filterOption.channel ||
         this.filterOption.day != '*' && element.schedule.days.indexOf(this.filterOption.day) == -1 ||
         this.filterOption.genre != '*' && element.genres.indexOf(this.filterOption.genre) == -1 ||
         this.filterOption.hour != '' && element.schedule.time != this.filterOption.hour

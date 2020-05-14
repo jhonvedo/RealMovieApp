@@ -12,6 +12,11 @@ export interface Country {
     code: string;
     timezone: string;
 }
+export interface WebChannel {
+    id: number;
+    name: string;
+    country?: Country;
+}
 
 export interface Network {
     id: number;
@@ -104,7 +109,7 @@ export interface Show {
     rating: Rating;
     weight: number;
     network: Network;
-    webChannel?: any;
+    webChannel?: WebChannel;
     externals: Externals;
     image: Image;
     summary: string;

@@ -44,6 +44,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { ShowDetailComponent } from './show-detail/show-detail.component';
 import { WrapperPageComponent } from './wrapper-page/wrapper-page.component';
@@ -80,7 +81,7 @@ import { CustomInterceptor } from './services/custom-interceptor';
     NgxMaterialTimepickerModule,
     ToastrModule.forRoot() ,
 
-
+    MatBadgeModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
