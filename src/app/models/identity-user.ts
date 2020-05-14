@@ -4,4 +4,6 @@ export class IdentityUser {
     id: string;
     userName: string;   
     email: string;   
+    isUser:boolean;
+    isAdmin:boolean;
 }

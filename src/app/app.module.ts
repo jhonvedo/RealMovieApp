@@ -7,11 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserManagementComponent } from './user-management/user-management.component';
-import { RoleFormComponent } from './user-management/role-form/role-form.component';
-import { RoleListComponent } from './user-management/role-list/role-list.component';
 import { UserFormComponent } from './user-management/user-form/user-form.component';
 import { UserListComponent } from './user-management/user-list/user-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 //Angular Material Components
@@ -49,6 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ShowDetailComponent } from './show-detail/show-detail.component';
 import { WrapperPageComponent } from './wrapper-page/wrapper-page.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ShowListComponent } from './component/show-list/show-list.component';
+import { LazyLoadImageModule,intersectionObserverPreset  } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
@@ -56,12 +56,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     LoginComponent,
     HomeComponent   ,
     UserManagementComponent,
-    RoleFormComponent,
-    RoleListComponent,
     UserFormComponent,
     UserListComponent,
     ShowDetailComponent,
-    WrapperPageComponent
+    WrapperPageComponent,
+    ShowListComponent
     
   ],
   imports: [
@@ -70,7 +69,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule ,   
-    
+    ReactiveFormsModule,
+    LazyLoadImageModule.forRoot({
+      preset: intersectionObserverPreset // <-- tell LazyLoadImage that you want to use IntersectionObserver
+    }),
+
 
     MatCheckboxModule,
     MatCheckboxModule,

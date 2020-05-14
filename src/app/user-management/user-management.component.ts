@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RoleFormComponent } from './role-form/role-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
-import { IdentityRole } from '../models/identity-role';
+import { IdentityUser } from '../models/identity-user';
+
 
 @Component({
   selector: 'app-user-management',
@@ -12,28 +12,21 @@ import { IdentityRole } from '../models/identity-role';
 export class UserManagementComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
-  modalZise:string = '250px';
-  roleEdit:IdentityRole;
+  modalZise:string = '350px';
+  updateUser:IdentityUser;
   ngOnInit(): void {
   }
-
-  newRole(){
-    this.roleEdit = null;
-    this.openRoleModal();
-  }
-
+ 
   newUser(){
-    const dialogRef = this.dialog.open(UserFormComponent, {width: this.modalZise});
+   this.updateUser=null;
+   this.openUserModal();
   }
 
-  onRoleEdit(event:IdentityRole){   
-    console.log(event);
-    this.roleEdit = event;
-    this.openRoleModal();
+  onEditUser(data:IdentityUser){
+    this.updateUser=data;
+    this.openUserModal();
   }
-
-  openRoleModal(){
-    const dialogRef = this.dialog.open(RoleFormComponent, {width: this.modalZise,data:this.roleEdit});
+  openUserModal(){
+    const dialogRef = this.dialog.open(UserFormComponent, {width: this.modalZise,data:this.updateUser});
   }
-
 }

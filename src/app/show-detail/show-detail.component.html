@@ -21,19 +21,7 @@
         <h2>{{ movie.name }}</h2>
       </div>
       <div class="movie__body">
-        <!-- <div class="movie--infos">
-          <p>
-            <mat-icon>date_range</mat-icon> {{ movie.release_date | date: "y" }} •
-            <mat-icon>timer</mat-icon> {{ movie.runtime }} minutes •
-            <mat-icon
-              [ngClass]="{
-                'mat-green': movie.vote_average >= 5,
-                'mat-red': movie.vote_average < 5
-              }"
-              >star</mat-icon>
-            {{ movie.vote_average }}
-          </p>
-        </div> -->
+       
         <div class="movie--genre">
           <ul>
             <li *ngFor="let genre of movie.genres">
@@ -83,15 +71,15 @@
                   </mat-form-field>
 
                
-                  <mat-grid-list cols="4" >
+                  <mat-grid-list cols="4" rowHeight="270px">
                     <mat-grid-tile *ngFor="let episode of episodes">
                       <mat-card >
                         <mat-card-header>
                           <div mat-card-avatar class="example-header-image"></div>
                           <mat-card-title>{{episode.number}} - {{episode.name}}</mat-card-title>                    
-                        </mat-card-header>                  
-                        <mat-card-content>
-                          <img mat-card-lg-image src="{{episode.image.medium}}"/>
+                        </mat-card-header>   
+                        <img mat-card-image src="{{episode.image.medium}}"/>               
+                        <mat-card-content>                         
                           <div [innerHTML]="episode.summary">
     
                           </div>

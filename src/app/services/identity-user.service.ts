@@ -14,12 +14,11 @@ export class IdentityUserService {
   get() {
     return this.http.get<IdentityUser[]>(`${environment.baseUrl}${this.path}`);
   }
-  post(data:IdentityUser,password:string,role:string) {
+  post(data:IdentityUser,password:string) {
 
     var options = {
       headers: new HttpHeaders({
-        'password':  password,
-        'roleid':  role
+        'password':  password        
       })
     };
     return this.http.post(`${environment.baseUrl}${this.path}`,data,options);
