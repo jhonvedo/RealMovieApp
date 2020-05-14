@@ -22,6 +22,6 @@ export class IdentityUserService {
     return this.http.put(`${environment.baseUrl}${this.path}`,data);
   }
   delete(data:IdentityUser) {
-    return this.http.delete(`${environment.baseUrl}${this.path}`);
+    return this.http.delete(`${environment.baseUrl}${this.path}/${data.id}`);
   }
 }

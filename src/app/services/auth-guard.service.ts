@@ -13,11 +13,10 @@ export class AuthGuardService implements CanActivate {
     if (!await this.authService.checkAuthenticated()) {
       await this.router.navigate(['login']);
       return false;
-    }
-   
-    
-
-    if(route.routeConfig.path == "users" && !this.authService.user?.value){
+    } 
+  
+    if(route.routeConfig.path == "users" && !this.authService.user?.value?.isAdmin){
+      await this.router.navigate(['home']);
      return false; 
     }
     
