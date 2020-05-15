@@ -3,6 +3,8 @@ import { ShowService } from '../services/show.service';
 import { Show } from '../models/show';
 import { FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,8 @@ export class HomeComponent implements OnInit {
   channels: any[] = [];
   names: string[] = [];
   days: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Friday", "Saturday"];
+  filteredOptions: Observable<string[]>;
+  filterControl = new FormControl();
   filterOption: {
     keywords: string,
     language: string,
@@ -28,9 +32,14 @@ export class HomeComponent implements OnInit {
     hour:string
   } = { channel: '*', genre: '*', language: '*', keywords: '', day: '*' ,hour:''};
 
+
   constructor(private service: ShowService,private notificationService: ToastrService) { }
 
   ngOnInit(): void {
+    this.filteredOptions = this.filterControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
 
     this.service.get().subscribe(data=>{
       this.shows = [...data];
@@ -60,6 +69,12 @@ export class HomeComponent implements OnInit {
     this.channels = [...new Set(this.channels)];
     this.names = [...new Set(this.names)];
 
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.names.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
   onSearch() {

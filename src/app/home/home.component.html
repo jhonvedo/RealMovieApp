@@ -7,17 +7,18 @@
           Search
         </mat-panel-title>       
       </mat-expansion-panel-header>  
-
+          
    
         <mat-form-field class="example-full-width">
           <input type="text" 
           [(ngModel)]="filterOption.keywords"
                  placeholder="Keywords"            
-                 matInput              
+                 matInput          
+                 [formControl]="filterControl"    
                  [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let name of names" [value]="name">
-              {{name}}
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
